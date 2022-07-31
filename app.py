@@ -1,6 +1,7 @@
 import discord
 import os
 import requests
+from image_processing import ImageProcessing
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,5 +31,9 @@ async def on_message(message):
         
     emote = '✅'
     await message.add_reaction(emote)
+
+    text = ImageProcessing('discord_image.png').get_text()
+
+    await message.channel.send(text)
     
 app.run(os.getenv('BOT_TOKEN'))
